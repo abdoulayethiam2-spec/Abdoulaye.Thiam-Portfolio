@@ -1,0 +1,178 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: #000;
+  overflow: hidden;
+}
+
+/* 🌌 BACKGROUND NET + ASSOMBRI */
+.background {
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url("imagedegarde.jpg") center / cover no-repeat;
+  z-index: -1;
+}
+
+/* 📝 TEXTE INTRO */
+.top-text {
+  position: absolute;
+  top: 70px;
+  width: 100%;
+  text-align: center;
+  color: rgba(255,255,255,0.92);
+  animation: fadeDown 1.6s ease forwards;
+}
+
+.top-text h1 {
+  font-size: 42px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.top-text h2 {
+  font-size: 54px;
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.top-text span {
+  color: #7dd9ff;
+  text-shadow: 0 0 20px rgba(125,217,255,0.8);
+}
+
+/* 🧊 NAVBAR 100% TRANSPARENTE */
+.glass-nav {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.96);
+
+  display: flex;
+  gap: 100px;
+  padding: 30px 90px;
+  border-radius: 90px;
+
+  background: transparent;
+
+  border: 1px solid rgba(255,255,255,0.15);
+
+  box-shadow:
+    0 0 40px rgba(0,130,255,0.25),
+    inset 0 0 15px rgba(255,255,255,0.1);
+
+  opacity: 0;
+  animation: navAppear 1.8s ease forwards;
+}
+
+/* 🌈 REFLET LIQUIDE SUBTIL */
+.glass-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  background: linear-gradient(
+    120deg,
+    transparent 45%,
+    rgba(255,255,255,0.35),
+    transparent 65%
+  );
+
+  opacity: 0.15;
+  animation: glassMove 10s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* 🔹 ITEMS */
+.nav-item {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-size: 26px;
+  padding: 22px 38px;
+  border-radius: 60px;
+  transition: color 0.3s ease;
+}
+
+/* 🫧 BULLES LIQUIDES */
+/* 🔹 ITEMS */
+.nav-item {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-size: 26px;
+  padding: 22px 38px;
+  border-radius: 60px;
+  transition: color 0.3s ease;
+}
+
+/* 🫧 BULLE AU HOVER UNIQUEMENT */
+.nav-item::before {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: 70px;
+
+  background: transparent; /* pas de fond */
+  box-shadow: 0 0 0 transparent; /* invisible par défaut */
+
+  opacity: 0;
+  transform: scale(0.7);
+  transition:
+    opacity 0.35s ease,
+    transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.35s ease;
+  z-index: -1;
+}
+
+/* 🎯 HOVER — bulle-outline lumineuse */
+.nav-item:hover::before {
+  opacity: 1;
+  transform: scale(1);
+  background: transparent; /* intérieur vide */
+  box-shadow:
+    0 0 30px rgba(0,150,255,0.8); /* glow extérieur */
+}
+
+
+.nav-item:hover::before {
+  opacity: 100;
+  transform: scale(1);
+}
+
+/* ✨ ANIMATIONS */
+@keyframes navAppear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glassMove {
+  0% { transform: translateX(-40%); }
+  50% { transform: translateX(40%); }
+  100% { transform: translateX(-40%); }
+}
